@@ -1,14 +1,11 @@
 package com.practicesoftwaretesting;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class RegisterUserResponse {
 
-    @JsonProperty("first_name")
     private String firstName;
-    @JsonProperty("last_name")
     private String lastName;
     private String address;
     private String city;
@@ -19,6 +16,5 @@ public class RegisterUserResponse {
     private String dob;
     private String email;
     private String id;
-    @JsonProperty("created_at")
     private String createdAt;
 }
