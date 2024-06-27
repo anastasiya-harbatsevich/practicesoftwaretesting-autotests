@@ -5,9 +5,9 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LoginUserResponse{
+public class LoginUserResponse {
 
-	private String accessToken;
-	private String tokenType;
-	private int expiresIn;
+    private String accessToken;
+    private String tokenType;
+    private int expiresIn;
 }

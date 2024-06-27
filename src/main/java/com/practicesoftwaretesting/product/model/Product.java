@@ -11,14 +11,14 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
-	private String id;
-	private String name;
-	private String description;
-	private double price;
-	private boolean isLocationOffer;
-	private boolean isRental;
-	private boolean inStock;
-	private Brand brand;
-	private Category category;
-	private ProductImage productImage;
+    private String id;
+    private String name;
+    private String description;
+    private double price;
+    private boolean isLocationOffer;
+    private boolean isRental;
+    private boolean inStock;
+    private Brand brand;
+    private Category category;
+    private ProductImage productImage;
 }

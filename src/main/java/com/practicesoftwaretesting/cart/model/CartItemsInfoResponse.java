@@ -7,11 +7,11 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CartItemsInfoResponse{
+public class CartItemsInfoResponse {
 
-	private String id;
-	private Object additionalDiscountPercentage;
-	private Object lat;
-	private Object lng;
-	private List<CartItem> cartItems;
+    private String id;
+    private Object additionalDiscountPercentage;
+    private Object lat;
+    private Object lng;
+    private List<CartItem> cartItems;
 }

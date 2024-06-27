@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category{
+public class Category {
 
-	private String id;
-	private String parentId;
-	private String name;
-	private String slug;
+    private String id;
+    private String parentId;
+    private String name;
+    private String slug;
 }
