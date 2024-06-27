@@ -1,11 +1,9 @@
-package com.practicesoftwaretesting.user.model;
+package com.practicesoftwaretesting;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
-public class RegisterUserRequest {
+public class RegisterUserResponse {
 
     private String firstName;
     private String lastName;
@@ -16,6 +14,7 @@ public class RegisterUserRequest {
     private String postcode;
     private String phone;
     private String dob;
-    private String password;
     private String email;
+    private String id;
+    private String createdAt;
 }

@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Brand{
+public class Brand {
 
-	private String id;
-	private String name;
-	private String slug;
+    private String id;
+    private String name;
+    private String slug;
 }

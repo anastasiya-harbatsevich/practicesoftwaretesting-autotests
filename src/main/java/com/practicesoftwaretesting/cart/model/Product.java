@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Product{
+public class Product {
 
-	private String name;
-	private String description;
-	private double price;
-	private boolean isLocationOffer;
-	private boolean isRental;
-	private boolean inStock;
-	private String id;
+    private String name;
+    private String description;
+    private double price;
+    private boolean isLocationOffer;
+    private boolean isRental;
+    private boolean inStock;
+    private String id;
 }
