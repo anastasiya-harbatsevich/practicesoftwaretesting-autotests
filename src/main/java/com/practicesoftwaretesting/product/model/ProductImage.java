@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductImage{
+
 	private String byName;
 	private String byUrl;
 	private String sourceName;

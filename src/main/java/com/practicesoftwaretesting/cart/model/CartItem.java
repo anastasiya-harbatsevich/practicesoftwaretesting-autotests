@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartItem {
+
 	private String id;
 	private int quantity;
 	private Object discountPercentage;

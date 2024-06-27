@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class ReceiveAllProductsResponse{
+
 	private int currentPage;
 	private int from;
 	private int lastPage;
