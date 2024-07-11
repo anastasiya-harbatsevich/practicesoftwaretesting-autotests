@@ -1,9 +1,7 @@
 package com.practicesoftwaretesting;
 
-import com.practicesoftwaretesting.pages.CustomerRegistrationPage;
-import com.practicesoftwaretesting.pages.Header;
-import com.practicesoftwaretesting.pages.HomePage;
-import com.practicesoftwaretesting.pages.LoginPage;
+import com.practicesoftwaretesting.pages.*;
+import com.practicesoftwaretesting.user.model.RegisterUserRequest;
 import org.junit.Test;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -14,6 +12,9 @@ public class UserTest {
     Header header = new Header();
     LoginPage loginPage = new LoginPage();
     CustomerRegistrationPage customerRegistrationPage = new CustomerRegistrationPage();
+    ContactPage contactPage = new ContactPage();
+    AccountPage accountPage = new AccountPage();
+
 
     @Test
     public void registerNewUserAndLogin() {
@@ -25,6 +26,42 @@ public class UserTest {
                 .clickRegisterYourAccount();
 
         customerRegistrationPage.isLoaded()
+                .assertThat()
+                .hasCorrectInfo();
+
+        var user = getUser();
+        customerRegistrationPage.registerNewUser(user);
+
+        loginPage.isLoaded()
+                .login(user.getEmail(), user.getPassword());
+
+        accountPage.isLoaded();
+        header.assertThat().isSignedIn(user.getFirstName() + " " + user.getLastName());
+    }
+
+    private RegisterUserRequest getUser() {
+        return RegisterUserRequest.builder()
+                .firstName("Denis")
+                .lastName("Lindeman")
+                .dob("12.12.2000")
+                .address("12 aleja Jerozolimskich")
+                .city("Bristol")
+                .state("California")
+                .country("Albania")
+                .postcode("12345")
+                .phone("12121212")
+                .email("den@test.test")
+                .password("sSuper-secret22")
+                .build();
+    }
+
+    @Test
+    public void contact() {
+        open("https://practicesoftwaretesting.com/#/");
+        homePage.isLoaded();
+        header.clickContactMenuItem();
+
+        contactPage.isLoaded()
                 .assertThat()
                 .hasCorrectInfo();
     }

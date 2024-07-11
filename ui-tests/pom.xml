@@ -23,10 +23,6 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
         </dependency>
@@ -54,6 +50,14 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.practicesoftwaretesting</groupId>
+            <artifactId>api-tests</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.practicesoftwaretesting</groupId>
+            <artifactId>api-tests</artifactId>
         </dependency>
     </dependencies>
 

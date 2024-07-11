@@ -13,8 +13,4 @@ public class SelectorUtils {
     public static By byFor(String attributeValue) {
         return by("for", attributeValue);
     }
-
-    public static By byId(String attributeValue) {
-        return by("id", attributeValue);
-    }
 }
