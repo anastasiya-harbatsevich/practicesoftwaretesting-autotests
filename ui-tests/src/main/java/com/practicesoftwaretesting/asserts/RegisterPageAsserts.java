@@ -2,9 +2,9 @@ package com.practicesoftwaretesting.asserts;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.practicesoftwaretesting.utils.SelectorUtils.byFor;
-import static com.practicesoftwaretesting.utils.SelectorUtils.byId;
 
 public class RegisterPageAsserts {
 
