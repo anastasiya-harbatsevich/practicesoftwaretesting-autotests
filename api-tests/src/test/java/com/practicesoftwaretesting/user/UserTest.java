@@ -6,6 +6,7 @@ import com.practicesoftwaretesting.user.model.LoginUserRequest;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 
+import static com.practicesoftwaretesting.user.UserSteps.DEFAULT_PASSWORD;
 import static org.junit.Assert.assertNotNull;
 
 public class UserTest extends BaseTest {
