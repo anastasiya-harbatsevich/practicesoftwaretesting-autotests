@@ -3,36 +3,52 @@ package com.practicesoftwaretesting.user;
 import com.github.javafaker.Faker;
 import com.practicesoftwaretesting.user.model.LoginUserRequest;
 import com.practicesoftwaretesting.user.model.RegisterUserRequest;
+import com.practicesoftwaretesting.user.model.UserSearch;
+import com.practicesoftwaretesting.utils.ConfigReader;
 
 public class UserSteps {
 
-    public static final String DEFAULT_PASSWORD = "sSuper-secret22";
-    public static final String EMAIL_ADMIN = "admin@practicesoftwaretesting.com";
-    public static final String PASSWORD_ADMIN = "welcome01";
+    ConfigReader configReader = new ConfigReader();
+    String defaultPassword = configReader.getProperty("default.password");
+    String adminEmail = configReader.getProperty("admin.email");
+    String adminPassword = configReader.getProperty("admin.password");
 
-    public void registerUser(String userEmail, String userPassword) {
+    public String registerUser(String userEmail, String userPassword) {
         var userController = new UserController();
         var registerUserRequest = buildUser(userEmail, userPassword);
-        userController.registerUser(registerUserRequest).as();
+        return userController
+                .registerUser(registerUserRequest)
+                .as()
+                .getId();
     }
 
     public String loginUser(String userEmail, String userPassword) {
         var userController = new UserController();
-        var userLoginResponse = userController.logInUser(new LoginUserRequest(userEmail, userPassword)).as();
+        var userLoginResponse = userController
+                .logInUser(new LoginUserRequest(userEmail, userPassword))
+                .as();
         return userLoginResponse.getAccessToken();
     }
 
     public String registerAndLoginUser() {
         var userEmail = getUserEmail();
-        registerUser(userEmail, DEFAULT_PASSWORD);
-        return loginUser(userEmail, DEFAULT_PASSWORD);
+        registerUser(userEmail, defaultPassword);
+        return loginUser(userEmail, defaultPassword);
     }
 
-    public String loginAsAdmin() {
-        return loginUser(EMAIL_ADMIN, PASSWORD_ADMIN);
+    public void deleteUser(String userId) {
+        var token = loginUser(adminEmail, adminPassword);
+        new UserController().deleteUser(userId, token)
+                .assertStatusCode(204);
     }
 
-    public RegisterUserRequest buildUser(String email, String password) {
+    public UserSearch searchUsers(String queryPhrase) {
+        var token = loginUser(adminEmail, adminPassword);
+        return new UserController().searchUser(queryPhrase, token)
+                .as();
+    }
+
+    public static RegisterUserRequest buildUser(String email, String password) {
         return RegisterUserRequest.builder()
                 .firstName("John")
                 .lastName("Doe")
@@ -47,7 +63,7 @@ public class UserSteps {
                 .build();
     }
 
-    public String getUserEmail() {
+    public static String getUserEmail() {
         return Faker.instance()
                 .friends()
                 .character()

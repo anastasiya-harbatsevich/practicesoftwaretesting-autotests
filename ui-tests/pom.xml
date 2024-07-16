@@ -57,7 +57,7 @@
         </dependency>
         <dependency>
             <groupId>com.practicesoftwaretesting</groupId>
-            <artifactId>api-tests</artifactId>
+            <artifactId>common</artifactId>
         </dependency>
     </dependencies>
 

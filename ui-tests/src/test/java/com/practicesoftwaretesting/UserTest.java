@@ -4,9 +4,7 @@ import com.practicesoftwaretesting.pages.*;
 import com.practicesoftwaretesting.user.model.RegisterUserRequest;
 import org.junit.Test;
 
-import static com.codeborne.selenide.Selenide.open;
-
-public class UserTest {
+public class UserTest extends BaseTest {
 
     HomePage homePage = new HomePage();
     Header header = new Header();
@@ -18,8 +16,8 @@ public class UserTest {
 
     @Test
     public void registerNewUserAndLogin() {
-        open("https://practicesoftwaretesting.com/#/");
-        homePage.isLoaded();
+        homePage.open()
+                .isLoaded();
         header.clickSignInMenuItem();
 
         loginPage.isLoaded()
@@ -37,6 +35,9 @@ public class UserTest {
 
         accountPage.isLoaded();
         header.assertThat().isSignedIn(user.getFirstName() + " " + user.getLastName());
+
+        var users = searchUsers("Bristol");
+        users.getData().forEach(userToDelete -> deleteUser(userToDelete.getId()));
     }
 
     private RegisterUserRequest getUser() {
@@ -57,8 +58,8 @@ public class UserTest {
 
     @Test
     public void contact() {
-        open("https://practicesoftwaretesting.com/#/");
-        homePage.isLoaded();
+        homePage.open()
+                .isLoaded();
         header.clickContactMenuItem();
 
         contactPage.isLoaded()
