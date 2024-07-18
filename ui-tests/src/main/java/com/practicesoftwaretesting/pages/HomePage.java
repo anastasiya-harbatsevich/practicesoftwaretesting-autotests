@@ -20,7 +20,7 @@ public class HomePage {
     }
 
     public HomePage open() {
-        Selenide.open("/auth/register");
+        Selenide.open("/");
         return this;
     }
 

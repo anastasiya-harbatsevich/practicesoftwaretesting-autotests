@@ -6,7 +6,8 @@ import com.practicesoftwaretesting.user.model.LoginUserRequest;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 
-import static com.practicesoftwaretesting.user.UserSteps.DEFAULT_PASSWORD;
+import static com.practicesoftwaretesting.user.UserSteps.buildUser;
+import static com.practicesoftwaretesting.user.UserSteps.getUserEmail;
 import static org.junit.Assert.assertNotNull;
 
 public class UserTest extends BaseTest {
@@ -20,7 +21,7 @@ public class UserTest extends BaseTest {
     public void testUser() {
         userEmail = getUserEmail();
         //Register user
-        var expectedUser = buildUser(userEmail, DEFAULT_PASSWORD);
+        var expectedUser = buildUser(userEmail, defaultPassword);
         var registerUserResponse = userController
                 .registerUser(expectedUser)
                 .assertStatusCode(201)
@@ -40,7 +41,7 @@ public class UserTest extends BaseTest {
                 .createdAtIs(registerUserResponse.getCreatedAt());
 
         //Login
-        var loginUserRequest = new LoginUserRequest(userEmail, DEFAULT_PASSWORD);
+        var loginUserRequest = new LoginUserRequest(userEmail, defaultPassword);
         var loginUserResponse = userController
                 .logInUser(loginUserRequest)
                 .assertStatusCode(200)

@@ -1,16 +1,18 @@
 package com.practicesoftwaretesting.user;
 
-import com.practicesoftwaretesting.user.model.RegisterUserRequest;
-
-import static com.practicesoftwaretesting.user.UserSteps.EMAIL_ADMIN;
-import static com.practicesoftwaretesting.user.UserSteps.PASSWORD_ADMIN;
+import com.practicesoftwaretesting.utils.ConfigReader;
 
 abstract class BaseTest {
 
+    ConfigReader configReader = new ConfigReader();
+    String adminEmail = configReader.getProperty("admin.email");
+    String adminPassword = configReader.getProperty("admin.password");
+    String defaultPassword = configReader.getProperty("default.password");
+
     UserSteps userSteps = new UserSteps();
 
-    public void registerUser(String userEmail, String userPassword) {
-       userSteps.registerUser(userEmail, userPassword);
+    public String registerUser(String userEmail, String userPassword) {
+        return userSteps.registerUser(userEmail, userPassword);
     }
 
     public String loginUser(String userEmail, String userPassword) {
@@ -18,18 +20,6 @@ abstract class BaseTest {
     }
 
     public String loginAsAdmin() {
-        return loginUser(EMAIL_ADMIN, PASSWORD_ADMIN);
-    }
-
-    public String registerAndLoginUser() {
-        return userSteps.registerAndLoginUser();
-    }
-
-    public RegisterUserRequest buildUser(String email, String password) {
-        return userSteps.buildUser(email, password);
-    }
-
-    public String getUserEmail() {
-        return userSteps.getUserEmail();
+        return loginUser(adminEmail, adminPassword);
     }
 }

@@ -6,21 +6,27 @@ import com.practicesoftwaretesting.product.ProductController;
 import com.practicesoftwaretesting.product.model.ReceiveAllProductsRequest;
 import com.practicesoftwaretesting.product.model.ReceiveAllProductsResponse;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import static com.practicesoftwaretesting.user.UserSteps.getUserEmail;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class CartTest extends BaseTest {
 
     private String authToken;
+    private String productId;
+    private String userId;
 
     CartController cartController = new CartController();
     ProductController productController = new ProductController();
 
     @BeforeEach
     void beforeEach() {
-        authToken = registerAndLoginUser();
+        var email = getUserEmail();
+        userId = registerUser(email, defaultPassword);
+        authToken = loginUser(email, defaultPassword);
     }
 
     @Test
@@ -52,5 +58,10 @@ public class CartTest extends BaseTest {
         var productList = productController.receiveListProducts(parameters)
                 .as(ReceiveAllProductsResponse.class);
         return productList.getData().get(0).getId();
+    }
+
+    @AfterEach
+    void cleanup() {
+        userSteps.deleteUser(userId);
     }
 }
